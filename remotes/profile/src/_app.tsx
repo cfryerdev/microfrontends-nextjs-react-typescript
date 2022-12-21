@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Layout from "./components/layout";
 
-const App = () => {
+const Application = () => {
 	return (
 		<Layout>
 			<ol className="breadcrumb">
@@ -12,6 +12,6 @@ const App = () => {
 			<p>This is the profile remote application.</p>
 		</Layout>
 	);
-}
+};
 
-export default App;
+export default Application;

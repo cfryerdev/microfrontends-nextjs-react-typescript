@@ -1,27 +1,43 @@
 {
-	"extends": "./tsconfig.paths.json",
-	"compilerOptions": {
-	  "target": "es5",
-	  "lib": ["dom", "dom.iterable", "esnext"],
-	  "allowJs": true,
-	  "skipLibCheck": true,
-	  "strict": true,
-	  "forceConsistentCasingInFileNames": true,
-	  "noEmit": true,
-	  "esModuleInterop": true,
-	  "module": "esnext",
-	  "moduleResolution": "node",
-	  "resolveJsonModule": true,
-	  "isolatedModules": true,
-	  "jsx": "preserve",
-	  "incremental": true,
-	  "plugins": [
-		{
-		  "name": "next"
-		}
-	  ]
-	},
-	"include": ["next-env.d.ts", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-	"exclude": ["node_modules"]
-  }
-  
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "remote_profile/Application": [
+        "./@mf-types/remote_profile/Application.d"
+      ]
+    },
+    "incremental": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "isolatedModules": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
