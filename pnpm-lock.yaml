@@ -21,6 +21,7 @@ importers:
     specifiers:
       '@module-federation/nextjs-mf': 6.0.4
       '@module-federation/typescript': 2.1.4
+      '@module-federation/utilities': 1.1.1
       '@types/node': ^18.11.13
       '@types/react': 18.0.26
       eslint: 8.10.0
@@ -36,6 +37,7 @@ importers:
     dependencies:
       '@module-federation/nextjs-mf': 6.0.4_5tnzbhorovxaxfwzkyejm3gtea
       '@module-federation/typescript': 2.1.4_jdkqqhjzhr64rrriferx7yse4a
+      '@module-federation/utilities': 1.1.1_mlh6viv3mzcp7zcvwq7yxbdguq
       next: 13.1.2_3duxcpitbtplz62feflag7fwby
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
