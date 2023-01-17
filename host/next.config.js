@@ -28,15 +28,17 @@ const nextConfig = {
 	},
 	webpack(config, options) {
 		if (!options.isServer) {
-			config.plugins.push(
-				new NextFederationPlugin(federationConfig),
-				new FederatedTypesPlugin({
-					federationConfig: {
-						...federationConfig,
-					},
-				})
-			);
+			config.plugins.push(new NextFederationPlugin(federationConfig));
 		}
+
+		config.plugins.push(
+			new FederatedTypesPlugin({
+				federationConfig: {
+					...federationConfig,
+				},
+			})
+		);
+
 		return config;
 	},
 };
