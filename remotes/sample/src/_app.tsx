@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Sample = ({ id }) => (
+interface SampleProps {
+	id?: number;
+}
+
+const Sample = ({ id }: SampleProps) => (
   <div>
     <ol className="breadcrumb">
       <li className="breadcrumb-item">Home</li>

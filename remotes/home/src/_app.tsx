@@ -1,6 +1,6 @@
 import React from 'react';
 
-const App = () => (
+const Home = () => (
   <div>
     <ol className="breadcrumb">
       <li className="breadcrumb-item">Home</li>
@@ -10,4 +10,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default Home;

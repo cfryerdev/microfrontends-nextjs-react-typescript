@@ -1,58 +1,75 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { ModuleFederationPlugin } = require('webpack').container;
-const path = require('path');
-const deps = require('./package.json').dependencies
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
+const { FederatedTypesPlugin } = require("@module-federation/typescript");
+const path = require("path");
+const deps = require("./package.json").dependencies;
 
 module.exports = {
-  entry: './src/index',
-  mode: 'development',
+  entry: "./src/index.ts",
+  mode: "development",
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, "dist"),
     },
     port: 3002,
+    open: false,
+    historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+      "Access-Control-Allow-Headers": "*",
+    },
   },
-  devtool: "source-map",
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
+    alias: {
+      "@shared": path.resolve(__dirname, "../../shared"),
+    },
+  },
   output: {
-    publicPath: 'http://localhost:3002/',
+    publicPath: `auto`,
+    chunkFilename: "[name].[contenthash].js",
+    filename: "[name].[contenthash].js",
+    assetModuleFilename: "[name].[contenthash][ext][query]",
+    clean: true,
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
+        test: /\.(js|jsx|tsx|ts)$/,
+        loader: "ts-loader",
         exclude: /node_modules/,
-        options: {
-          presets: ['@babel/preset-react'],
-        },
       },
     ],
   },
   plugins: [
-    new ModuleFederationPlugin({
-      name: 'remote_sample',
-      library: { type: 'var', name: 'remote_sample' },
-      filename: 'remote.js',
-      exposes: {
-        './Application': './src/_app',
+    new FederatedTypesPlugin({
+      federationConfig: {
+        name: "remote_sample",
+        filename: "remote.js",
+        //library: { type: "var", name: "remote_sample" },
+        exposes: {
+          "./Application": "./src/_app",
+        },
+        shared: {
+          react: {
+            singleton: true,
+            requiredVersion: deps.react,
+          },
+          "react-dom": {
+            singleton: true,
+            requiredVersion: deps["react-dom"],
+          },
+          next: {
+            singleton: true,
+            requiredVersion: deps["next"],
+          },
+        },
       },
-      shared: {
-				'react': {
-					singleton: true,
-					requiredVersion: deps.react,
-				},
-				'react-dom': {
-					singleton: true,
-					requiredVersion: deps['react-dom'],
-				},
-				'next': {
-					singleton: true,
-					requiredVersion: deps['next'],
-				},
-			},
     }),
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: "./public/index.html",
+      chunks: ["main"],
     }),
   ],
 };

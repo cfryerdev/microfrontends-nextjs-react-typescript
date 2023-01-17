@@ -8,13 +8,14 @@ import PageLoader from "../app/loading";
 import dynamic from 'next/dynamic';
 const ProfileRemote = dynamic(() => import('remote_profile/Application'), {
   ssr: false,
+  suspense: true
 });
 
 const ProfilePage = () => {
     return (
-        <Suspense fallback={<PageLoader />}>
+        // <Suspense fallback={<PageLoader />}>
             <ProfileRemote />
-        </Suspense>
+        // </Suspense>
     );
 }
 

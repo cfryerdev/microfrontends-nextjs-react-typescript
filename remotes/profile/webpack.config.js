@@ -13,6 +13,12 @@ module.exports = {
 		},
 		port: 3003,
 		open: false,
+		historyApiFallback: true,
+		headers: {
+		  "Access-Control-Allow-Origin": "*",
+		  "Access-Control-Allow-Methods": "*",
+		  "Access-Control-Allow-Headers": "*",
+		},
 	},
 	resolve: {
 		extensions: [".ts", ".tsx", ".js"],
@@ -41,7 +47,7 @@ module.exports = {
 			federationConfig: {
 				name: "remote_profile",
 				filename: "remote.js",
-				library: { type: "var", name: "remote_profile" },
+				//library: { type: "var", name: "remote_profile" },
 				exposes: {
 					"./Application": "./src/_app",
 				},

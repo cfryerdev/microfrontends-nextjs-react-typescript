@@ -33,9 +33,6 @@ const nextConfig = {
 				new FederatedTypesPlugin({
 					federationConfig: {
 						...federationConfig,
-						remotes: {
-							remote_profile,
-						},
 					},
 				})
 			);

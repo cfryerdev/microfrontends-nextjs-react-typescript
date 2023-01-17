@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "scripts": {},
   "dependencies": {
-    "@microsoft/applicationinsights-react-js": "^3.3.3",
-    "@microsoft/applicationinsights-web": "^2.8.3",
     "webpack": "5.75.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
