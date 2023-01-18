@@ -16,7 +16,10 @@
 		"isolatedModules": false,
 		"sourceMap": true,
 		"noEmit": false,
-		"jsx": "react-jsx"
+		"jsx": "react-jsx",
+		"composite": true
 	},
-	"include": ["./host/src/"]
+	"include": ["**/*.ts", "**/*.tsx"],
+	"exclude": ["**/node_modules", "**/.*/"],
+	"files": []
 }

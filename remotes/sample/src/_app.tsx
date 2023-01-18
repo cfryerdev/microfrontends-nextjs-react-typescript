@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface SampleProps {
-	id?: number;
+	id?: string;
 }
 
 const Sample = ({ id }: SampleProps) => (

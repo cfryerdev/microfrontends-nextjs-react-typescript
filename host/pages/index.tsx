@@ -1,5 +1,7 @@
+import Layout from "../app/layout";
+
 export default function IndexPage() {
   return (
-    <div>Index Page</div>
+    <Layout>Index Page</Layout>
   )
 }

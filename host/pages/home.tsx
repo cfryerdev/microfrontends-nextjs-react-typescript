@@ -1,14 +1,29 @@
 import React from "react";
 import Layout from "../app/layout";
+import { importRemote } from "@module-federation/utilities";
+import dynamic from "next/dynamic";
+import type Home from "remote_home/Application";
+import PageLoader from "@shared/components/page-loader";
+import { ErrorBoundary } from "@shared/components/error-boundary";
 
-// @ts-ignore
-//const HomeRemote = React.lazy(() => import("remote_home/Application"));
+const HomeRemote = dynamic(() =>
+    importRemote<typeof Home>({
+        url: "http://localhost:3001",
+        scope: "remote_home",
+		module: "Application",
+		remoteEntryFileName: "remote.js",
+		bustRemoteEntryCache: false
+    }), { ssr: false, loading: () => <PageLoader /> }
+);
 
-import dynamic from 'next/dynamic';
-const HomeRemote = dynamic(() => import('remote_home/Application'), {
-  ssr: false,
-});
-
-const HomePage = () => (<Layout><HomeRemote /></Layout>);
+const HomePage = () => {
+	return (
+		<Layout>
+			<ErrorBoundary>
+				<HomeRemote />
+			</ErrorBoundary>
+		</Layout>
+	);
+};
 
 export default HomePage;

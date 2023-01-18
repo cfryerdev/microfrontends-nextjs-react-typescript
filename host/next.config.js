@@ -1,3 +1,4 @@
+const path = require('path');
 const NextFederationPlugin = require("@module-federation/nextjs-mf");
 const { FederatedTypesPlugin } = require("@module-federation/typescript");
 
@@ -25,18 +26,27 @@ const { remote_profile, ...rest } = federationConfig.remotes;
 const nextConfig = {
 	experimental: {
 		appDir: true,
+		externalDir: true
 	},
 	webpack(config, options) {
 		if (!options.isServer) {
-			config.plugins.push(
-				new NextFederationPlugin(federationConfig),
-				new FederatedTypesPlugin({
-					federationConfig: {
-						...federationConfig,
-					},
-				})
-			);
+			config.plugins.push(new NextFederationPlugin(federationConfig));
 		}
+		
+		config.resolve.alias = {
+			...config.resolve.alias,
+			'@shared': path.resolve(__dirname, '../shared')
+		}
+
+		config.plugins.push(
+			new FederatedTypesPlugin({
+				federationConfig: {
+					...federationConfig,
+					remotes: []
+				},
+			})
+		);
+
 		return config;
 	},
 };

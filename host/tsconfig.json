@@ -19,9 +19,20 @@
 		{
 		  "name": "next"
 		}
-	  ]
+	  ],
+	  "composite": true
 	},
-	"include": ["next-env.d.ts", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+	"references": [
+		{ "path": "../shared" },
+	],
+	"include": [
+		"next-env.d.ts", 
+		"**/*.js", 
+		"**/*.jsx", 
+		"**/*.ts", 
+		"**/*.tsx", 
+		".next/types/**/*.ts"
+	],
 	"exclude": ["node_modules"]
   }
   

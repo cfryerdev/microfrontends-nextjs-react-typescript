@@ -1,29 +1,32 @@
 import React from "react";
-import Layout from "../app/layout";
+import { useRouter } from 'next/router';
+import Layout from "../../app/layout";
 import { importRemote } from "@module-federation/utilities";
 import dynamic from "next/dynamic";
-import type Profile from "remote_profile/Application";
+import type Sample from "remote_sample/Application";
 import PageLoader from "@shared/components/page-loader";
 import { ErrorBoundary } from "@shared/components/error-boundary";
 
-const ProfileRemote = dynamic(() =>
-    importRemote<typeof Profile>({
-        url: "http://localhost:3003",
-        scope: "remote_profile",
+const SampleRemote = dynamic(() =>
+    importRemote<typeof Sample>({
+        url: "http://localhost:3002",
+        scope: "remote_sample",
 		module: "Application",
 		remoteEntryFileName: "remote.js",
 		bustRemoteEntryCache: false
     }), { ssr: false, loading: () => <PageLoader /> }
 );
 
-const ProfilePage = () => {
+const SamplePage = () => {
+	const router = useRouter()
+  	const { id } = router.query;
 	return (
 		<Layout>
 			<ErrorBoundary>
-				<ProfileRemote />
+				<SampleRemote id={id as string} />
 			</ErrorBoundary>
 		</Layout>
 	);
 };
 
-export default ProfilePage;
+export default SamplePage;
