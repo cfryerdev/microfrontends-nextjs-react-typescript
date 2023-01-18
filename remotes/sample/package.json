@@ -1,5 +1,5 @@
 {
-	"name": "sample",
+	"name": "remote-sample",
 	"version": "0.0.0",
 	"private": true,
 	"devDependencies": {
