@@ -9,7 +9,7 @@ import { ErrorBoundary } from "@shared/components/error-boundary";
 
 const SampleRemote = dynamic(() =>
     importRemote<typeof Sample>({
-        url: "http://localhost:3002",
+        url: "http://localhost:3002", // TODO: Get this from configuration api
         scope: "remote_sample",
 		module: "Application",
 		remoteEntryFileName: "remote.js",

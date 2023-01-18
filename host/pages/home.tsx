@@ -8,7 +8,7 @@ import { ErrorBoundary } from "@shared/components/error-boundary";
 
 const HomeRemote = dynamic(() =>
     importRemote<typeof Home>({
-        url: "http://localhost:3001",
+        url: "http://localhost:3001", // TODO: Get this from configuration api
         scope: "remote_home",
 		module: "Application",
 		remoteEntryFileName: "remote.js",
