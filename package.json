@@ -29,10 +29,31 @@
     "devDependencies": {
       "@types/node": "17.0.33",
       "@types/react": "18.0.18",
-      "concurrently": "7.4.0"
+      "concurrently": "7.4.0",
+      "tslib": "2.4.0",
+      "typescript": "4.8.3",
+      "husky": "7.0.4"
     },
     "workspaces": [
       "shared"
-    ]
+    ],
+    "pnpm": {
+      "overrides": {
+        "@types/react": "18.0.18",
+        "tslib": "2.4.0"
+      },
+      "peerDependencyRules": {
+        "allowedVersions": {
+          "react": "18",
+          "react-dom": "18",
+          "rxjs": "7"
+        },
+        "ignoreMissing": [
+          "prop-types",
+          "ts-node",
+          "typescript"
+        ]
+      }
+    }
   }
   
