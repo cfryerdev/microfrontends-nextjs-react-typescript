@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Microfrontends using a NextJS Host and React remotes",
   "scripts": {
-    "install": "concurrently \"npm run install:host\" \"npm run install:home\" \"npm run install:profile\" \"npm run install:sample\" ",
     "start": "concurrently \"npm run start:home\" \"npm run start:profile\" \"npm run start:sample\" \"npm run start:host\"",
     "build": "",
     "install:host": "cd host && npm install",
@@ -23,8 +22,10 @@
   "author": "Chris Fryer <cfryerdev@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "husky": "^8.0.3",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "sass": "^1.57.1"
   },
   "devDependencies": {
     "@types/node": "17.0.33",
