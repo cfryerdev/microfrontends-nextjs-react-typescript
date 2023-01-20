@@ -23,8 +23,8 @@ Lets take a quick look at the folder structure before we get too deep.
 Ive really worked hard to keep this extremely simple to stand up.
 
 ```bash
-$ npm install
-$ npm start
+$ pnpm install
+$ pnpm start
 ```
 
 Now you may visit `http://localhost:3000` in a browser.
