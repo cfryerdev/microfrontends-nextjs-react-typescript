@@ -18,7 +18,7 @@ const Layout = ({ children }: LayoutProps) => {
       <SubNav />
       <div className="container mt-4">{children}</div>
       <div className="text-center text-muted">
-        cfryerdev - 2022
+        cfryerdev - 2023
       </div>
     </>
   );
