@@ -1,59 +1,61 @@
 {
-    "name": "microfrontends-nextjs-react",
-    "version": "1.0.0",
-    "description": "Microfrontends using a NextJS Host and React remotes",
-    "scripts": {
-      "install": "concurrently \"npm run install:host\" \"npm run install:home\" \"npm run install:profile\" \"npm run install:sample\" ",
-      "start": "concurrently \"npm run start:home\" \"npm run start:profile\" \"npm run start:sample\" \"npm run start:host\"",
-      "build": "",
-      "install:host": "cd host && npm install",
-      "start:host": "cd host && npm run start",
-      "build:host": "cd host && npm run build",
-      "install:home": "cd remotes && cd home && npm install",
-      "start:home": "cd remotes && cd home && npm start",
-      "build:home": "cd remotes && cd home && npm run build",
-      "install:sample": "cd remotes && cd sample && npm install",
-      "start:sample": "cd remotes && cd sample && npm start",
-      "build:sample": "cd remotes && cd sample && npm run build",
-      "install:profile": "cd remotes && cd profile && npm install",
-      "start:profile": "cd remotes && cd profile && npm start",
-      "build:profile": "cd remotes && cd profile && npm run build"
+  "name": "microfrontends-nextjs-react",
+  "version": "1.0.0",
+  "description": "Microfrontends using a NextJS Host and React remotes",
+  "scripts": {
+    "install": "concurrently \"npm run install:host\" \"npm run install:home\" \"npm run install:profile\" \"npm run install:sample\" ",
+    "start": "concurrently \"npm run start:home\" \"npm run start:profile\" \"npm run start:sample\" \"npm run start:host\"",
+    "build": "",
+    "install:host": "cd host && npm install",
+    "start:host": "cd host && npm run start",
+    "build:host": "cd host && npm run build",
+    "install:home": "cd remotes && cd home && npm install",
+    "start:home": "cd remotes && cd home && npm start",
+    "build:home": "cd remotes && cd home && npm run build",
+    "install:sample": "cd remotes && cd sample && npm install",
+    "start:sample": "cd remotes && cd sample && npm start",
+    "build:sample": "cd remotes && cd sample && npm run build",
+    "install:profile": "cd remotes && cd profile && npm install",
+    "start:profile": "cd remotes && cd profile && npm start",
+    "build:profile": "cd remotes && cd profile && npm run build"
+  },
+  "keywords": [],
+  "author": "Chris Fryer <cfryerdev@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.33",
+    "@types/react": "18.0.18",
+    "concurrently": "7.4.0",
+    "tslib": "2.4.1",
+    "typescript": "4.9.4",
+    "webpack": "5.75.0"
+  },
+  "workspaces": [
+    "shared"
+  ],
+  "engines": {
+    "node": ">=14",
+    "npm": "please-use-pnpm",
+    "pnpm": ">=7"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "18.0.18"
     },
-    "keywords": [],
-    "author": "Chris Fryer <cfryerdev@gmail.com>",
-    "license": "MIT",
-    "dependencies": {
-      "react": "18.1.0",
-      "react-dom": "18.1.0"
-    },
-    "devDependencies": {
-      "@types/node": "17.0.33",
-      "@types/react": "18.0.18",
-      "concurrently": "7.4.0",
-      "tslib": "2.4.0",
-      "typescript": "4.8.3",
-      "husky": "7.0.4"
-    },
-    "workspaces": [
-      "shared"
-    ],
-    "pnpm": {
-      "overrides": {
-        "@types/react": "18.0.18",
-        "tslib": "2.4.0"
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "18",
+        "react-dom": "18"
       },
-      "peerDependencyRules": {
-        "allowedVersions": {
-          "react": "18",
-          "react-dom": "18",
-          "rxjs": "7"
-        },
-        "ignoreMissing": [
-          "prop-types",
-          "ts-node",
-          "typescript"
-        ]
-      }
+      "ignoreMissing": [
+        "prop-types",
+        "ts-node",
+        "typescript"
+      ]
     }
   }
-  
+}
