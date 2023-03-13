@@ -4,7 +4,8 @@
   "description": "Microfrontends using a NextJS Host and React remotes",
   "scripts": {
     "start": "concurrently \"npm run start:home\" \"npm run start:profile\" \"npm run start:sample\" \"npm run start:host\"",
-    "build": "",
+    "prod": "cd host && npm run prod",
+    "build": "cd host && npm run build",
     "install:host": "cd host && npm install",
     "start:host": "cd host && npm run start",
     "build:host": "cd host && npm run build",

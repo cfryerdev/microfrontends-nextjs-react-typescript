@@ -2,21 +2,26 @@ import React from "react";
 import Layout from "../app/layout";
 import { importRemote } from "@module-federation/utilities";
 import dynamic from "next/dynamic";
-import type Profile from "remote_profile/Application";
 import PageLoader from "@shared/components/page-loader";
 import { ErrorBoundary } from "@shared/components/error-boundary";
 
-const ProfileRemote = dynamic(() =>
-    importRemote<typeof Profile>({
-        url: "http://localhost:3003", // TODO: Get this from configuration api
-        scope: "remote_profile",
-		module: "Application",
-		remoteEntryFileName: "remote.js",
-		bustRemoteEntryCache: false
-    }), { ssr: false, loading: () => <PageLoader /> }
-);
+interface ProfilePageProps {
+    remoteUrl: string;
+}
 
-const ProfilePage = () => {
+const ProfilePage = ({ remoteUrl }: ProfilePageProps) => {
+    const ProfileRemote = dynamic(
+        async () => {
+            return importRemote<typeof React.Component>({
+                url: remoteUrl,
+                scope: 'remote_profile',
+                module: 'Application',
+                remoteEntryFileName: 'remote.js',
+                bustRemoteEntryCache: true,
+            });
+        },
+        { ssr: false, loading: () => <PageLoader label="Loading profile remote..." /> }
+    );
 	return (
 		<Layout>
 			<ErrorBoundary>
@@ -25,5 +30,12 @@ const ProfilePage = () => {
 		</Layout>
 	);
 };
+export async function getServerSideProps() {
+    return {
+        props: {
+            remoteUrl: "http://localhost:3003",
+        } as ProfilePageProps,
+    };
+}
 
 export default ProfilePage;

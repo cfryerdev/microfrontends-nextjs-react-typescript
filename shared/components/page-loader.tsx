@@ -1,8 +1,12 @@
 import React from "react";
 
-const PageLoader = () => {
+interface PageLoaderProps {
+  label: string;
+}
+
+const PageLoader = ({ label }: PageLoaderProps) => {
     return (
-      <>Loading remote...</>
+      <>{label}</>
     );
 };
 
