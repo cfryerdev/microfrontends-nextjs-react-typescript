@@ -2,21 +2,26 @@ import React from "react";
 import Layout from "../app/layout";
 import { importRemote } from "@module-federation/utilities";
 import dynamic from "next/dynamic";
-import type Home from "remote_home/Application";
 import PageLoader from "@shared/components/page-loader";
 import { ErrorBoundary } from "@shared/components/error-boundary";
 
-const HomeRemote = dynamic(() =>
-    importRemote<typeof Home>({
-        url: "http://localhost:3001", // TODO: Get this from configuration api
-        scope: "remote_home",
-		module: "Application",
-		remoteEntryFileName: "remote.js",
-		bustRemoteEntryCache: false
-    }), { ssr: false, loading: () => <PageLoader /> }
-);
+interface HomePageProps {
+    remoteUrl: string;
+}
 
-const HomePage = () => {
+const HomePage = ({ remoteUrl }: HomePageProps) => {
+    const HomeRemote = dynamic(
+        async () => {
+            return importRemote<typeof React.Component>({
+                url: remoteUrl,
+                scope: 'remote_home',
+                module: 'Application',
+                remoteEntryFileName: 'remote.js',
+                bustRemoteEntryCache: true,
+            });
+        },
+        { ssr: false, loading: () => <PageLoader label="Loading home remote..." /> }
+    );
 	return (
 		<Layout>
 			<ErrorBoundary>
@@ -25,5 +30,12 @@ const HomePage = () => {
 		</Layout>
 	);
 };
+export async function getServerSideProps() {
+    return {
+        props: {
+            remoteUrl: "http://localhost:3001",
+        } as HomePageProps,
+    };
+}
 
 export default HomePage;
