@@ -9,9 +9,8 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
-		"@module-federation/nextjs-mf": "6.0.4",
-		"@module-federation/typescript": "2.1.4",
-		"@module-federation/utilities": "1.1.1",
+		"@module-federation/nextjs-mf": "6.1.4",
+		"@module-federation/utilities": "1.3.0",
 		"next": "13.1.2",
 		"react": "18.2.0",
 		"react-dom": "18.2.0"
@@ -22,7 +21,7 @@
 		"eslint": "8.32.0",
 		"eslint-config-next": "13.1.3",
 		"typescript": "4.9.4",
-		"webpack": "5.75.0",
+		"webpack": "5.76.1",
 		"webpack-cli": "5.0.1",
 		"webpack-dev-server": "4.11.1"
 	}

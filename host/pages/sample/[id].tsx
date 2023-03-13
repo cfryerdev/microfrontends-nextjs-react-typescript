@@ -28,6 +28,7 @@ const SamplePage = ({ remoteUrl }: SamplePageProps) => {
 	return (
 		<Layout>
 			<ErrorBoundary>
+                {/* @ts-ignore */}
 				<SampleRemote id={id} />
 			</ErrorBoundary>
 		</Layout>

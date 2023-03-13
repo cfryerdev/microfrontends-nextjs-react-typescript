@@ -1,6 +1,5 @@
 const path = require('path');
 const NextFederationPlugin = require("@module-federation/nextjs-mf");
-const { FederatedTypesPlugin } = require("@module-federation/typescript");
 
 const federationConfig = {
 	name: "host",
@@ -22,11 +21,6 @@ const nextConfig = {
 			...config.resolve.alias,
 			'@shared': path.resolve(__dirname, '../shared')
 		}
-		config.plugins.push(
-			new FederatedTypesPlugin({
-				federationConfig: federationConfig,
-			})
-		);
 		return config;
 	},
 };

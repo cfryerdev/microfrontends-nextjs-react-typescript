@@ -1,6 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
-const { FederatedTypesPlugin } = require("@module-federation/typescript");
 const path = require("path");
 const deps = require("./package.json").dependencies;
 
@@ -43,27 +42,24 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new FederatedTypesPlugin({
-			federationConfig: {
-				name: "remote_home",
-				filename: "remote.js",
-				//library: { type: "var", name: "remote_home" },
-				exposes: {
-					"./Application": "./src/_app",
+		new ModuleFederationPlugin({
+			name: "remote_home",
+			filename: "remote.js",
+			exposes: {
+				"./Application": "./src/_app",
+			},
+			shared: {
+				react: {
+					singleton: true,
+					requiredVersion: deps.react,
 				},
-				shared: {
-					react: {
-						singleton: true,
-						requiredVersion: deps.react,
-					},
-					"react-dom": {
-						singleton: true,
-						requiredVersion: deps["react-dom"],
-					},
-					next: {
-						singleton: true,
-						requiredVersion: deps["next"],
-					},
+				"react-dom": {
+					singleton: true,
+					requiredVersion: deps["react-dom"],
+				},
+				next: {
+					singleton: true,
+					requiredVersion: deps["next"],
 				},
 			},
 		}),
